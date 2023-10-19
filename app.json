@@ -15,16 +15,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.expo.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.expo.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "scheme": "expo-app",
+    "extra": {
+      "eas": {
+        "projectId": "f7645ec3-8d7f-4d7e-8435-0b2f1489c2b9"
+      }
     }
   }
 }
