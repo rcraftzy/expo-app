@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import { ROUTES } from '../constants/navigation.constant'
-import { GettingStarted } from '../screens'
+import { GettingStarted, Suggestion } from '../screens'
 
 const Stack = createStackNavigator()
 
@@ -11,6 +11,7 @@ const Navigation = () => {
       screenOptions={{headerShown: false}}
     >
       <Stack.Screen component={GettingStarted} name={ROUTES.gettingStarted} />
+      <Stack.Screen component={Suggestion} name={ROUTES.suggestion} />
     </Stack.Navigator>
   </NavigationContainer>
 
