@@ -1,9 +1,6 @@
 import { View, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-export const ProgressButtons = ({ numScreens = 3}) => {
-  const navigation = useNavigation();
-  const currentScreenIndex = navigation.dangerouslyGetState().index;
+export const ProgressButtons = ({ numScreens = 3, currentPage }) => {
   const progressItems = [];
 
   for (let i = 0; i < numScreens; i++) {
@@ -12,7 +9,7 @@ export const ProgressButtons = ({ numScreens = 3}) => {
         key={i}
         style={[
           styles.progressItem,
-          i === currentScreenIndex ? styles.activeItem : styles.inactiveItem,
+          i === currentPage ? styles.activeItem : styles.inactiveItem,
         ]}
       />
     );
@@ -26,17 +23,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: 30
   },
   progressItem: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    marginHorizontal: 5,
+    marginHorizontal: 5
   },
   activeItem: {
-    backgroundColor: 'orange', // Color del punto activo
+    backgroundColor: 'orange' // Color del punto activo
   },
   inactiveItem: {
-    backgroundColor: 'purple', // Color del punto inactivo
+    backgroundColor: 'purple' // Color del punto inactivo
   },
 });
