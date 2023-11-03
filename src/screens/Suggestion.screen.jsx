@@ -1,5 +1,7 @@
+import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { Dimensions, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ROUTES } from '../constants/navigation.constant';
 
 const DATA = [
   {
@@ -43,6 +45,13 @@ const DATA = [
 
 export const Suggestion = () => {
   const [text, onChangeText] = useState('');
+  const [selected, setSelected] = useState([])
+  const [actived, setActived] = useState(false)
+  const navigation = useNavigation()
+
+  const handleSubmit = () => {
+    navigation.navigate(ROUTES.listPapers)
+  }
 
   const Item = ({title}) => (
     <View style={styles.item}>
@@ -71,7 +80,7 @@ export const Suggestion = () => {
           <View style={styles.listContainer}>
             <FlatList 
               data={DATA}
-              style={styles.list}
+              numColumns={3}
               renderItem={
                 ({item}) => <Item title={item.title} />
               }
@@ -80,7 +89,7 @@ export const Suggestion = () => {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.buttonGettingStarted}>
+          <TouchableOpacity style={styles.buttonGettingStarted} onPress={() => handleSubmit()}>
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
         </View>
@@ -98,7 +107,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: Dimensions.get('window').width,
     height: Dimensions.get("window").height,
-    flex: 1,
     alignItems: 'center',
   },
   text: {
@@ -108,7 +116,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     width: '82%',
-    gap: 20
   },
   title: {
     fontSize: 15,
@@ -119,12 +126,6 @@ const styles = StyleSheet.create({
   paragraph: {
     fontSize: 13,
     color: 'black'
-  },
-  buttonNext: {
-    flex: 1,
-    backgroundColor: 'purple',
-    padding: 10,
-    borderRadius: 7
   },
   buttonText: {
     color: "white",
@@ -175,33 +176,35 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: 'bold'
   },
-  item: {
-  },
-  itemTitle: {
-    borderRadius: 7,
-    borderWidth: 1,
-    padding: 4,
-    paddingHorizontal: 12,
-  },
-  list: {
-    gap: 20,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    borderColor: 'black',
-  },
-  suggestionContainer: {
-    flexDirection: 'column',
-    width: '82%',
-    gap: 20
-  },
   input: {
     backgroundColor: 'white',
     borderRadius: 7,
     padding: 10,
   },
+  suggestionContainer: {
+    width: '84%',
+  },
   listContainer: {
-    flexDirection: 'row',
-    gap: 20,
+    marginTop: 20,
     flexWrap: 'wrap',
-  }
+    flexDirection: 'row',
+    gap: 20
+  },
+  item: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderColor: 'purple',
+    borderWidth: 1,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 4,
+    flexWrap:'wrap',
+    marginVertical: 3,
+    marginHorizontal: 4,
+  },
+  itemTitle: {
+    color: 'purple',
+    marginHorizontal: 8,
+  },
 });

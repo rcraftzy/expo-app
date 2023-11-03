@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Dimensions, StyleSheet } from 'react-native';
 import { ProgressButtons } from '../Components/ProgressButtons';
 import { Image } from '@rneui/themed';
